@@ -1,167 +1,143 @@
-//package com.toeicvocab.service;
-//
-//import com.toeicvocab.domain.TestResult;
-//import com.toeicvocab.domain.User;
-//import com.toeicvocab.domain.Word;
-//import com.toeicvocab.domain.Wordbook;
-//import com.toeicvocab.dto.response.TestResultResponse;
-//import com.toeicvocab.repository.TestResultRepository;
-//import com.toeicvocab.repository.UserRepository;
-//import com.toeicvocab.repository.WordRepository;
-//import com.toeicvocab.repository.WordbookRepository;
-//import com.toeicvocab.util.TestScoreCalculator;
-//import org.junit.jupiter.api.BeforeEach;
-//import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
-//
-//import java.util.Arrays;
-//import java.util.List;
-//import java.util.Optional;
-//
-//import static org.junit.jupiter.api.Assertions.*;
-//import static org.mockito.ArgumentMatchers.any;
-//import static org.mockito.ArgumentMatchers.anyString;
-//import static org.mockito.Mockito.*;
-//
-//@ExtendWith(MockitoExtension.class)
-//public class TestServiceTest {
-//
-//    @Mock
-//    private TestResultRepository testResultRepository;
-//
-//    @Mock
-//    private UserRepository userRepository;
-//
-//    @Mock
-//    private WordbookRepository wordbookRepository;
-//
-//    @Mock
-//    private WordRepository wordRepository;
-//
-//    @Mock
-//    private TestScoreCalculator testScoreCalculator;
-//
-//    @InjectMocks
-//    private TestService testService;
-//
-//    private User user;
-//    private Wordbook wordbook;
-//    private TestResult testResult;
-//    private List<Word> wordList;
-//
-//    @BeforeEach
-//    void setUp() {
-//        // 사용자 설정
-//        user = User.builder()
-//                .id(1L)
-//                .username("testuser")
-//                .email("test@example.com")
-//                .password("encodedPassword")
-//                .build();
-//
-//        // 단어장 설정
-//        wordbook = Wordbook.builder()
-//                .id(1L)
-//                .title("TOEIC 초급 단어장")
-//                .description("TOEIC 시험 대비 초급 단어장")
-//                .build();
-//
-//        // 테스트 결과 설정
-//        testResult = TestResult.builder()
-//                .id(1L)
-//                .user(user)
-//                .wordbook(wordbook)
-//                .correctCount(25)
-//                .totalCount(30)
-//                .score(800)
-//                .build();
-//
-//        // 테스트할 단어 목록 설정
-//        Word word1 = Word.builder()
-//                .id(1L)
-//                .word("apple")
-//                .meaning("사과")
-//                .difficultyLevel(Word.DifficultyLevel.EASY)
-//                .wordbook(wordbook)
-//                .build();
-//
-//        Word word2 = Word.builder()
-//                .id(2L)
-//                .word("banana")
-//                .meaning("바나나")
-//                .difficultyLevel(Word.DifficultyLevel.EASY)
-//                .wordbook(wordbook)
-//                .build();
-//
-//        wordList = Arrays.asList(word1, word2);
-//    }
-//
-//    @Test
-//    void saveTestResult_Success() {
-//        // Given
-//        when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(user));
-//        when(wordbookRepository.findById(anyLong())).thenReturn(Optional.of(wordbook));
-//        when(testScoreCalculator.calculateScore(anyInt())).thenReturn(800);
-//        when(testResultRepository.save(any(TestResult.class))).thenReturn(testResult);
-//
-//        // When
-//        TestResultResponse result = testService.saveTestResult("testuser", 1L, 25, 30);
-//
-//        // Then
-//        assertNotNull(result);
-//        assertEquals(1L, result.getId());
-//        assertEquals(25, result.getCorrectCount());
-//        assertEquals(30, result.getTotalCount());
-//        assertEquals(800, result.getScore());
-//        assertEquals("testuser", result.getUsername());
-//        assertEquals("TOEIC 초급 단어장", result.getWordbookTitle());
-//
-//        verify(userRepository).findByUsername("testuser");
-//        verify(wordbookRepository).findById(1L);
-//        verify(testScoreCalculator).calculateScore(25);
-//        verify(testResultRepository).save(any(TestResult.class));
-//    }
-//
-//    @Test
-//    void getUserTestResults_Success() {
-//        // Given
-//        when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(user));
-//        when(testResultRepository.findByUserOrderByTestDateDesc(any(User.class)))
-//                .thenReturn(Arrays.asList(testResult));
-//
-//        // When
-//        List<TestResultResponse> results = testService.getUserTestResults("testuser");
-//
-//        // Then
-//        assertNotNull(results);
-//        assertEquals(1, results.size());
-//        assertEquals(25, results.get(0).getCorrectCount());
-//        assertEquals(30, results.get(0).getTotalCount());
-//        assertEquals(800, results.get(0).getScore());
-//
-//        verify(userRepository).findByUsername("testuser");
-//        verify(testResultRepository).findByUserOrderByTestDateDesc(user);
-//    }
-//
-//    @Test
-//    void getWordsForTest_Success() {
-//        // Given
-//        when(wordbookRepository.findById(anyLong())).thenReturn(Optional.of(wordbook));
-//        when(wordRepository.findByWordbook(any(Wordbook.class))).thenReturn(wordList);
-//
-//        // When
-//        List<Word> result = testService.getWordsForTest(1L);
-//
-//        // Then
-//        assertNotNull(result);
-//        assertEquals(2, result.size());
-//        assertEquals("apple", result.get(0).getWord());
-//        assertEquals("banana", result.get(1).getWord());
-//
-//        verify(wordbookRepository).findById(1L);
-//        verify(wordRepository).findByWordbook(wordbook);
-//    }
-//}
+package com.toeicvocab.service;
+
+import com.toeicvocab.domain.TestResult;
+import com.toeicvocab.domain.User;
+import com.toeicvocab.domain.Word;
+import com.toeicvocab.domain.Wordbook;
+import com.toeicvocab.dto.response.TestResultResponse;
+import com.toeicvocab.repository.TestResultRepository;
+import com.toeicvocab.repository.UserRepository;
+import com.toeicvocab.repository.WordRepository;
+import com.toeicvocab.repository.WordbookRepository;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+@SpringBootTest
+public class TestServiceTest {
+
+    @Autowired
+    private TestResultRepository testResultRepository;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private WordbookRepository wordbookRepository;
+
+    @Autowired
+    private WordRepository wordRepository;
+
+    @Autowired
+    private TestService testService;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    private User user;
+    private Wordbook wordbook;
+
+    @BeforeEach
+    void setUp() {
+        // 사용자 생성 및 저장
+        user = User.builder()
+                .username("user1")
+                .email("user1@example.com")
+                .password(passwordEncoder.encode("1234"))
+                .build();
+        user = userRepository.save(user);
+
+        // 단어장 생성 및 저장
+        wordbook = Wordbook.builder()
+                .title("TOEIC 초급 단어장")
+                .description("TOEIC 시험 대비 초급 단어장")
+                .build();
+        wordbook = wordbookRepository.save(wordbook);
+
+        // 테스트용 단어 생성 및 저장
+        Word word1 = Word.builder()
+                .word("apple")
+                .meaning("사과")
+                .example("I eat an apple every day.")
+                .difficultyLevel(Word.DifficultyLevel.EASY)
+                .wordbook(wordbook)
+                .build();
+        wordRepository.save(word1);
+
+        Word word2 = Word.builder()
+                .word("banana")
+                .meaning("바나나")
+                .example("Monkeys like to eat bananas.")
+                .difficultyLevel(Word.DifficultyLevel.EASY)
+                .wordbook(wordbook)
+                .build();
+        wordRepository.save(word2);
+    }
+
+    @Test
+    void saveTestResult_Success() {
+        // When
+        TestResultResponse result = testService.saveTestResult(
+                user.getUsername(), wordbook.getId(), 25, 30);
+
+        // Then
+        assertNotNull(result);
+        assertEquals(25, result.getCorrectCount());
+        assertEquals(30, result.getTotalCount());
+        assertTrue(result.getScore() > 0); // 점수 계산은 TestScoreCalculator에 의존
+        assertEquals(user.getUsername(), result.getUsername());
+        assertEquals(wordbook.getTitle(), result.getWordbookTitle());
+
+        // 데이터베이스에서 결과 확인
+        List<TestResult> savedResults = testResultRepository.findByUserOrderByTestDateDesc(user);
+        assertFalse(savedResults.isEmpty());
+        assertEquals(25, savedResults.get(0).getCorrectCount());
+        assertEquals(30, savedResults.get(0).getTotalCount());
+    }
+
+    @Test
+    void getUserTestResults_Success() {
+        // Given: 테스트 결과 저장
+        testService.saveTestResult(user.getUsername(), wordbook.getId(), 25, 30);
+        testService.saveTestResult(user.getUsername(), wordbook.getId(), 27, 30);
+
+        // When
+        List<TestResultResponse> results = testService.getUserTestResults(user.getUsername());
+
+        // Then
+        assertNotNull(results);
+        assertEquals(2, results.size());
+        // 최신 결과가 먼저 나오는지 확인 (내림차순)
+        assertEquals(27, results.get(0).getCorrectCount());
+        assertEquals(25, results.get(1).getCorrectCount());
+    }
+
+    @Test
+    void getWordsForTest_Success() {
+        // When
+        List<Word> result = testService.getWordsForTest(wordbook.getId());
+
+        // Then
+        assertNotNull(result);
+        assertEquals(2, result.size());
+
+        // 데이터베이스에서 단어 조회 확인
+        boolean foundApple = false;
+        boolean foundBanana = false;
+
+        for (Word word : result) {
+            if (word.getWord().equals("apple")) foundApple = true;
+            if (word.getWord().equals("banana")) foundBanana = true;
+        }
+
+        assertTrue(foundApple);
+        assertTrue(foundBanana);
+    }
+}

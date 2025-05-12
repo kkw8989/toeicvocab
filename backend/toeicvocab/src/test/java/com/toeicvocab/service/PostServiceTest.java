@@ -8,84 +8,83 @@
 //import com.toeicvocab.repository.UserRepository;
 //import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.Test;
-//import org.junit.jupiter.api.extension.ExtendWith;
-//import org.mockito.InjectMocks;
-//import org.mockito.Mock;
-//import org.mockito.junit.jupiter.MockitoExtension;
+//import org.springframework.beans.factory.annotation.Autowired;
+//import org.springframework.boot.test.context.SpringBootTest;
+//import org.springframework.security.crypto.password.PasswordEncoder;
+//import org.springframework.transaction.annotation.Transactional;
 //
-//import java.util.Arrays;
 //import java.util.List;
-//import java.util.Optional;
 //
 //import static org.junit.jupiter.api.Assertions.*;
-//import static org.mockito.ArgumentMatchers.any;
-//import static org.mockito.ArgumentMatchers.anyString;
-//import static org.mockito.Mockito.*;
 //
-//@ExtendWith(MockitoExtension.class)
+//@SpringBootTest
 //public class PostServiceTest {
 //
-//    @Mock
+//    @Autowired
 //    private PostRepository postRepository;
 //
-//    @Mock
+//    @Autowired
 //    private UserRepository userRepository;
 //
-//    @InjectMocks
+//    @Autowired
 //    private PostService postService;
 //
+//    @Autowired
+//    private PasswordEncoder passwordEncoder;
+//
 //    private User user;
+//    private User otherUser;
 //    private PostRequest postRequest;
-//    private Post post;
 //
 //    @BeforeEach
 //    void setUp() {
-//        // 사용자 설정
+//        // 테스트 전 데이터 정리
+//        postRepository.deleteAll();
+//
+//        // 사용자 생성 및 저장
 //        user = User.builder()
-//                .id(1L)
 //                .username("testuser")
 //                .email("test@example.com")
-//                .password("encodedPassword")
+//                .password(passwordEncoder.encode("password"))
 //                .build();
+//        user = userRepository.save(user);
+//
+//        // 다른 사용자 생성 (권한 테스트용)
+//        otherUser = User.builder()
+//                .username("otheruser")
+//                .email("other@example.com")
+//                .password(passwordEncoder.encode("password"))
+//                .build();
+//        otherUser = userRepository.save(otherUser);
 //
 //        // 게시글 요청 데이터 설정
 //        postRequest = new PostRequest();
 //        postRequest.setTitle("테스트 게시글");
 //        postRequest.setContent("이것은 테스트 게시글입니다.");
-//
-//        // 게시글 엔티티 설정
-//        post = Post.builder()
-//                .id(1L)
-//                .title("테스트 게시글")
-//                .content("이것은 테스트 게시글입니다.")
-//                .user(user)
-//                .build();
 //    }
 //
 //    @Test
 //    void createPost_Success() {
-//        // Given
-//        when(userRepository.findByUsername(anyString())).thenReturn(Optional.of(user));
-//        when(postRepository.save(any(Post.class))).thenReturn(post);
-//
 //        // When
-//        PostResponse result = postService.createPost("testuser", postRequest);
+//        PostResponse result = postService.createPost(user.getUsername(), postRequest);
 //
 //        // Then
 //        assertNotNull(result);
 //        assertEquals("테스트 게시글", result.getTitle());
 //        assertEquals("이것은 테스트 게시글입니다.", result.getContent());
-//        assertEquals("testuser", result.getUsername());
+//        assertEquals(user.getUsername(), result.getUsername());
 //
-//        verify(userRepository).findByUsername("testuser");
-//        verify(postRepository).save(any(Post.class));
+//        // 데이터베이스에서 결과 확인
+//        List<Post> savedPosts = postRepository.findAllByOrderByCreatedAtDesc();
+//        assertFalse(savedPosts.isEmpty());
+//        assertEquals("테스트 게시글", savedPosts.get(0).getTitle());
+//        assertEquals(user.getId(), savedPosts.get(0).getUser().getId());
 //    }
 //
 //    @Test
 //    void updatePost_Success() {
-//        // Given
-//        when(postRepository.findById(anyLong())).thenReturn(Optional.of(post));
-//        when(postRepository.save(any(Post.class))).thenReturn(post);
+//        // Given: 게시글 생성
+//        PostResponse createdPost = postService.createPost(user.getUsername(), postRequest);
 //
 //        // 수정할 게시글 데이터 설정
 //        PostRequest updateRequest = new PostRequest();
@@ -93,76 +92,91 @@
 //        updateRequest.setContent("내용이 수정되었습니다.");
 //
 //        // When
-//        PostResponse result = postService.updatePost(1L, "testuser", updateRequest);
+//        PostResponse result = postService.updatePost(
+//                createdPost.getId(), user.getUsername(), updateRequest);
 //
 //        // Then
 //        assertNotNull(result);
 //        assertEquals("수정된 게시글", result.getTitle());
 //        assertEquals("내용이 수정되었습니다.", result.getContent());
-//        assertEquals("testuser", result.getUsername());
+//        assertEquals(user.getUsername(), result.getUsername());
 //
-//        verify(postRepository).findById(1L);
-//        verify(postRepository).save(any(Post.class));
+//        // 데이터베이스에서 결과 확인
+//        Post updatedPost = postRepository.findById(createdPost.getId()).orElse(null);
+//        assertNotNull(updatedPost);
+//        assertEquals("수정된 게시글", updatedPost.getTitle());
+//        assertEquals("내용이 수정되었습니다.", updatedPost.getContent());
 //    }
 //
 //    @Test
 //    void updatePost_NotAuthor() {
-//        // Given
-//        when(postRepository.findById(anyLong())).thenReturn(Optional.of(post));
+//        // Given: 게시글 생성
+//        PostResponse createdPost = postService.createPost(user.getUsername(), postRequest);
 //
-//        // When & Then
+//        // When & Then: 다른 사용자가 수정 시도
 //        Exception exception = assertThrows(RuntimeException.class, () -> {
-//            postService.updatePost(1L, "otheruser", postRequest);
+//            postService.updatePost(createdPost.getId(), otherUser.getUsername(), postRequest);
 //        });
 //
 //        assertEquals("게시글 수정 권한이 없습니다.", exception.getMessage());
-//        verify(postRepository).findById(1L);
-//        verify(postRepository, never()).save(any(Post.class));
+//
+//        // 데이터베이스에서 변경이 없는지 확인
+//        Post post = postRepository.findById(createdPost.getId()).orElse(null);
+//        assertNotNull(post);
+//        assertEquals("테스트 게시글", post.getTitle());
 //    }
 //
 //    @Test
 //    void getAllPosts_Success() {
-//        // Given
-//        when(postRepository.findAllByOrderByCreatedAtDesc()).thenReturn(Arrays.asList(post));
+//        // Given: 여러 게시글 생성
+//        postService.createPost(user.getUsername(), postRequest);
+//
+//        PostRequest post2Request = new PostRequest();
+//        post2Request.setTitle("두 번째 게시글");
+//        post2Request.setContent("두 번째 테스트 게시글입니다.");
+//        postService.createPost(user.getUsername(), post2Request);
 //
 //        // When
 //        List<PostResponse> results = postService.getAllPosts();
 //
 //        // Then
 //        assertNotNull(results);
-//        assertEquals(1, results.size());
-//        assertEquals("테스트 게시글", results.get(0).getTitle());
-//        assertEquals("이것은 테스트 게시글입니다.", results.get(0).getContent());
-//        assertEquals("testuser", results.get(0).getUsername());
-//
-//        verify(postRepository).findAllByOrderByCreatedAtDesc();
+//        assertEquals(2, results.size());
+//        // 최신 게시글이 먼저 오는지 확인 (내림차순)
+//        assertEquals("두 번째 게시글", results.get(0).getTitle());
+//        assertEquals("테스트 게시글", results.get(1).getTitle());
 //    }
 //
 //    @Test
 //    void deletePost_Success() {
-//        // Given
-//        when(postRepository.findById(anyLong())).thenReturn(Optional.of(post));
+//        // Given: 게시글 생성
+//        PostResponse createdPost = postService.createPost(user.getUsername(), postRequest);
+//        Long postId = createdPost.getId();
+//
+//        // 생성 확인
+//        assertTrue(postRepository.existsById(postId));
 //
 //        // When
-//        postService.deletePost(1L, "testuser");
+//        postService.deletePost(postId, user.getUsername());
 //
 //        // Then
-//        verify(postRepository).findById(1L);
-//        verify(postRepository).delete(post);
+//        assertFalse(postRepository.existsById(postId));
 //    }
 //
 //    @Test
 //    void deletePost_NotAuthor() {
-//        // Given
-//        when(postRepository.findById(anyLong())).thenReturn(Optional.of(post));
+//        // Given: 게시글 생성
+//        PostResponse createdPost = postService.createPost(user.getUsername(), postRequest);
+//        Long postId = createdPost.getId();
 //
-//        // When & Then
+//        // When & Then: 다른 사용자가 삭제 시도
 //        Exception exception = assertThrows(RuntimeException.class, () -> {
-//            postService.deletePost(1L, "otheruser");
+//            postService.deletePost(postId, otherUser.getUsername());
 //        });
 //
 //        assertEquals("게시글 삭제 권한이 없습니다.", exception.getMessage());
-//        verify(postRepository).findById(1L);
-//        verify(postRepository, never()).delete(any(Post.class));
+//
+//        // 데이터베이스에서 삭제되지 않았는지 확인
+//        assertTrue(postRepository.existsById(postId));
 //    }
 //}
