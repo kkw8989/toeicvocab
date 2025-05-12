@@ -17,9 +17,9 @@ function AdminLoginForm() {
   const { loading, error, isAuthenticated, isAdmin } = useSelector((state) => state.auth);
   
   useEffect(() => {
-    // 이미 관리자로 로그인되어 있다면 관리자 대시보드로 리다이렉트
+    // 이미 관리자로 로그인되어 있다면 홈으로 리다이렉트
     if (isAuthenticated && isAdmin) {
-      navigate('/admin');
+      navigate('/');
     }
     
     // 컴포넌트 언마운트 시 에러 초기화
