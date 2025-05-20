@@ -68,26 +68,30 @@ function TestQuestions({ wordbookId }) {
   };
   
   // 테스트 결과 제출
-  const handleFinishTest = () => {
-    // 맞은 문제 수 계산
-    const correctCount = Object.values(userAnswers).filter(
-      (answer) => answer.isCorrect
-    ).length;
-    
-    // 테스트 결과 저장
-    dispatch(
-      submitTestResult({
-        wordbookId,
-        correctCount,
-        totalCount: testWords.length,
-      })
-    )
-      .unwrap()
-      .then(() => {
-        // 결과 페이지로 이동
-        navigate(`/test/result/${wordbookId}`);
-      });
-  };
+const handleFinishTest = () => {
+  // 맞은 문제 수 계산
+  const correctCount = Object.values(userAnswers).filter(
+    (answer) => answer.isCorrect
+  ).length;
+  
+  // 테스트 결과 저장
+  dispatch(
+    submitTestResult({
+      wordbookId,
+      correctCount,
+      totalCount: testWords.length,
+    })
+  )
+    .unwrap()
+    .then((result) => {  // 결과 데이터를 매개변수로 받음
+      // 결과 페이지로 이동
+      navigate(`/test/result/${wordbookId}/${result.id}`);
+    })
+    .catch((error) => {
+      console.error("테스트 결과 저장 실패:", error);
+      // 오류 처리 로직 추가 가능
+    });
+};
   
   // 로딩 중 표시
   if (loading) {

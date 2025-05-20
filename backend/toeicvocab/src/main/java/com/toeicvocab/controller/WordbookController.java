@@ -19,7 +19,7 @@ public class WordbookController {
 
     // 관리자용 단어장 생성 엔드포인트
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<WordbookResponse> createWordbook(
             @RequestParam String title,
             @RequestParam(required = false) String description) {
@@ -28,7 +28,7 @@ public class WordbookController {
 
     // 관리자용 단어장 수정 엔드포인트
     @PutMapping("/{wordbookId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<WordbookResponse> updateWordbook(
             @PathVariable Long wordbookId,
             @RequestParam String title,
@@ -38,7 +38,7 @@ public class WordbookController {
 
     // 관리자용 단어장 삭제 엔드포인트
     @DeleteMapping("/{wordbookId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> deleteWordbook(@PathVariable Long wordbookId) {
         wordbookService.deleteWordbook(wordbookId);
         return ResponseEntity.ok("단어장이 삭제되었습니다.");

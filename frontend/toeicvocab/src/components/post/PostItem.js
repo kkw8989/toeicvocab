@@ -1,3 +1,4 @@
+// src/components/post/PostItem.js
 import React from 'react';
 import { formatDate } from '../../utils/formatters';
 import { Link } from 'react-router-dom';
@@ -5,7 +6,7 @@ import { Link } from 'react-router-dom';
 function PostItem({ post }) {
   return (
     <div className="post-item">
-      <Link to={`/board/${post.id}`} className="post-link">
+      <Link to={`/posts/${post.id}`} className="post-link">
         <h3 className="post-title">{post.title}</h3>
       </Link>
       <div className="post-info">

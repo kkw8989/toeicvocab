@@ -29,6 +29,10 @@ public class User {
     @Column(nullable = false, unique = true)
     private String email;
 
+    // 역할 정보 추가
+    @Column(nullable = false)
+    private String role = "USER";  // 기본값으로 USER 설정
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

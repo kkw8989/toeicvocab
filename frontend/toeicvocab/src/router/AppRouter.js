@@ -3,7 +3,7 @@ import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setUser } from '../slices/authSlice';
-import { getUserInfo, isLoggedIn } from '../utils/tokenUtils';
+import { getUserInfo, isLoggedIn, isAdmin } from '../utils/tokenUtils';
 
 // 인증 페이지
 import LoginPage from '../pages/auth/LoginPage';
@@ -23,11 +23,11 @@ import TestPage from '../pages/test/TestPage';
 import TestResultPage from '../pages/test/TestResultPage';
 import TestHistoryPage from '../pages/test/TestHistoryPage';
 
-// 게시판 페이지
-import BoardListPage from '../pages/board/BoardListPage';
-import BoardDetailPage from '../pages/board/BoardDetailPage';
-import BoardWritePage from '../pages/board/BoardWritePage';
-import BoardEditPage from '../pages/board/BoardEditPage';
+// 게시글 페이지
+import PostListPage from '../pages/post/PostListPage';
+import PostDetailPage from '../pages/post/PostDetailPage';
+import PostWritePage from '../pages/post/PostWritePage';
+import PostEditPage from '../pages/post/PostEditPage';
 
 // 관리자 페이지
 import AdminDashboardPage from '../pages/admin/AdminDashboardPage';
@@ -51,7 +51,7 @@ const PrivateRoute = ({ children }) => {
 
 // 관리자 인증 확인 라우트 wrapper
 const AdminRoute = ({ children }) => {
-  const isUserAdmin = isLoggedIn() && getUserInfo()?.isAdmin;
+  const isUserAdmin = isLoggedIn() && isAdmin();
   
   if (!isUserAdmin) {
     return <Navigate to="/login" />;
@@ -121,25 +121,25 @@ function AppRouter() {
           } 
         />
         
-        {/* 게시판 페이지 */}
-        <Route path="/board" element={<BoardListPage />} />
-        <Route path="/board/:postId" element={<BoardDetailPage />} />
+        {/* 게시글 페이지 */}
+        <Route path="/posts" element={<PostListPage />} />
         <Route 
-          path="/board/write" 
+          path="/posts/write" 
           element={
             <PrivateRoute>
-              <BoardWritePage />
+              <PostWritePage />
             </PrivateRoute>
           } 
         />
         <Route 
-          path="/board/edit/:postId" 
+          path="/posts/edit/:postId" 
           element={
             <PrivateRoute>
-              <BoardEditPage />
+              <PostEditPage />
             </PrivateRoute>
           } 
         />
+        <Route path="/posts/:postId" element={<PostDetailPage />} />
         
         {/* 관리자 페이지 */}
         <Route 

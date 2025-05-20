@@ -26,10 +26,21 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
         try {
             String jwt = getJwtFromRequest(request);
+            log.debug("JWT Token: {}", jwt);
+            log.debug("Request URI: {}", request.getRequestURI());
 
-            if (StringUtils.hasText(jwt) && tokenProvider.validateToken(jwt)) {
-                Authentication authentication = tokenProvider.getAuthentication(jwt);
-                SecurityContextHolder.getContext().setAuthentication(authentication);
+            if (StringUtils.hasText(jwt)) {
+                if (tokenProvider.validateToken(jwt)) {
+                    log.debug("Token is valid");
+                    Authentication authentication = tokenProvider.getAuthentication(jwt);
+                    log.debug("Authentication: {}", authentication);
+                    log.debug("Authorities: {}", authentication.getAuthorities());
+                    SecurityContextHolder.getContext().setAuthentication(authentication);
+                } else {
+                    log.debug("Token validation failed");
+                }
+            } else {
+                log.debug("No JWT token found in request");
             }
         } catch (Exception ex) {
             log.error("Could not set user authentication in security context", ex);
@@ -40,6 +51,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     private String getJwtFromRequest(HttpServletRequest request) {
         String bearerToken = request.getHeader("Authorization");
+        log.debug("Authorization header: {}", bearerToken);
         if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
             return bearerToken.substring(7);
         }

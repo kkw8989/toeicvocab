@@ -41,7 +41,11 @@ export const addWordbook = createAsyncThunk(
       const response = await createWordbook(title, description);
       return response;
     } catch (error) {
-      return rejectWithValue(error.response.data);
+      // 오류 메시지만 추출하여 반환
+      const errorMessage = 
+        error.response?.data?.message || 
+        (typeof error.response?.data === 'string' ? error.response.data : '단어장 생성에 실패했습니다.');
+      return rejectWithValue(errorMessage);
     }
   }
 );
