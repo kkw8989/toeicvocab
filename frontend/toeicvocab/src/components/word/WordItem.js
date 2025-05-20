@@ -1,5 +1,6 @@
 import React from 'react';
 import { formatDifficulty } from '../../utils/formatters';
+import './word.css';
 
 function WordItem({ word, onClick, showMeaning = true }) {
   const difficultyClass = `difficulty-${word.difficultyLevel.toLowerCase()}`;

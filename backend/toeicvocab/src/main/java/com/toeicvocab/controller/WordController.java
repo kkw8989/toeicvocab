@@ -22,14 +22,14 @@ public class WordController {
 
     // 관리자용 단어 생성 엔드포인트
     @PostMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<WordResponse> createWord(@Valid @RequestBody WordRequest wordRequest) {
         return ResponseEntity.ok(wordService.createWord(wordRequest));
     }
 
     // 관리자용 단어 수정 엔드포인트
     @PutMapping("/{wordId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<WordResponse> updateWord(
             @PathVariable Long wordId,
             @Valid @RequestBody WordRequest wordRequest) {
@@ -38,7 +38,7 @@ public class WordController {
 
     // 관리자용 단어 삭제 엔드포인트
     @DeleteMapping("/{wordId}")
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<?> deleteWord(@PathVariable Long wordId) {
         wordService.deleteWord(wordId);
         return ResponseEntity.ok("단어가 삭제되었습니다.");
@@ -66,7 +66,7 @@ public class WordController {
 
     // 관리자용 모든 단어 조회 엔드포인트
     @GetMapping
-    @PreAuthorize("hasRole('ADMIN')")
+    @PreAuthorize("hasAuthority('ADMIN')")
     public ResponseEntity<List<WordResponse>> getAllWords() {
         return ResponseEntity.ok(wordService.getAllWords());
     }

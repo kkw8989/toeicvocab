@@ -32,7 +32,7 @@ function Header() {
               <Link to="/test">테스트</Link>
             </li>
             <li className="nav-item">
-              <Link to="/board">게시판</Link>
+              <Link to="/posts">게시판</Link>
             </li>
             {isAuthenticated && isAdmin() && (
               <li className="nav-item">

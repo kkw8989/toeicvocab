@@ -29,6 +29,10 @@ function AdminDashboardPage() {
     return acc;
   }, {});
   
+  // 정렬된 배열 미리 계산
+  const sortedWordbooks = [...wordbooks].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
+  const sortedWords = [...words].sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 5);
+  
   return (
     <AdminLayout>
       <div className="admin-dashboard">
@@ -71,16 +75,13 @@ function AdminDashboardPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {wordbooks
-                      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                      .slice(0, 5)
-                      .map((wordbook) => (
-                        <tr key={wordbook.id}>
-                          <td>{wordbook.title}</td>
-                          <td>{wordbook.wordCount}</td>
-                          <td>{new Date(wordbook.createdAt).toLocaleDateString()}</td>
-                        </tr>
-                      ))}
+                    {sortedWordbooks.map((wordbook) => (
+                      <tr key={wordbook.id}>
+                        <td>{wordbook.title}</td>
+                        <td>{wordbook.wordCount}</td>
+                        <td>{new Date(wordbook.createdAt).toLocaleDateString()}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               ) : (
@@ -103,23 +104,20 @@ function AdminDashboardPage() {
                     </tr>
                   </thead>
                   <tbody>
-                    {words
-                      .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
-                      .slice(0, 5)
-                      .map((word) => (
-                        <tr key={word.id}>
-                          <td>{word.word}</td>
-                          <td>{word.meaning}</td>
-                          <td>
-                            {word.difficultyLevel === 'EASY'
-                              ? '쉬움'
-                              : word.difficultyLevel === 'MEDIUM'
-                              ? '보통'
-                              : '어려움'}
-                          </td>
-                          <td>{word.wordbookTitle}</td>
-                        </tr>
-                      ))}
+                    {sortedWords.map((word) => (
+                      <tr key={word.id}>
+                        <td>{word.word}</td>
+                        <td>{word.meaning}</td>
+                        <td>
+                          {word.difficultyLevel === 'EASY'
+                            ? '쉬움'
+                            : word.difficultyLevel === 'MEDIUM'
+                            ? '보통'
+                            : '어려움'}
+                        </td>
+                        <td>{word.wordbookTitle}</td>
+                      </tr>
+                    ))}
                   </tbody>
                 </table>
               ) : (

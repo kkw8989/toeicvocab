@@ -8,6 +8,7 @@ import TestQuestions from '../../components/test/TestQuestions';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
 import Button from '../../components/common/Button';
+import './test.css';
 
 function TestPage() {
   const { wordbookId } = useParams();

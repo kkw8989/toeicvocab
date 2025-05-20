@@ -7,6 +7,7 @@ import TestHistory from '../../components/test/TestHistory';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
 import Button from '../../components/common/Button';
+import './test.css';
 
 function TestHistoryPage() {
   const dispatch = useDispatch();

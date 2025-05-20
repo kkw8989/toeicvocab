@@ -1,4 +1,3 @@
-// src/utils/tokenUtils.js
 // 로컬 스토리지에 토큰 저장
 export const saveToken = (token) => {
     localStorage.setItem('accessToken', token);
@@ -33,7 +32,8 @@ export const saveToken = (token) => {
   // 관리자 여부 확인
   export const isAdmin = () => {
     const userInfo = getUserInfo();
-    return userInfo && userInfo.isAdmin;
+    // 사용자 이름이 'admin'인 경우 관리자로 처리
+    return userInfo && (userInfo.isAdmin || userInfo.username === 'admin');
   };
   
   // 로그인 여부 확인

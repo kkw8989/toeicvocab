@@ -7,6 +7,7 @@ import BasicLayout from '../../layout/BasicLayout';
 import WordbookItem from '../../components/wordbook/WordbookItem';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
+import './home.css';
 
 function HomePage() {
   const dispatch = useDispatch();
@@ -14,15 +15,15 @@ function HomePage() {
   const { wordbooks, loading: wordbooksLoading, error: wordbooksError } = useSelector((state) => state.wordbook);
   const { testResults, loading: testResultsLoading, error: testResultsError } = useSelector((state) => state.test);
   
-  // useEffect(() => {
-  //   // 단어장 목록 불러오기
-  //   dispatch(fetchAllWordbooks());
+  useEffect(() => {
+    // 단어장 목록 불러오기
+    dispatch(fetchAllWordbooks());
     
-  //   // 로그인 상태일 경우 테스트 결과 불러오기
-  //   if (isAuthenticated) {
-  //     dispatch(fetchUserTestResults());
-  //   }
-  // }, [dispatch, isAuthenticated]);
+    // 로그인 상태일 경우 테스트 결과 불러오기
+    if (isAuthenticated) {
+      dispatch(fetchUserTestResults());
+    }
+  }, [dispatch, isAuthenticated]);
   
   const loading = wordbooksLoading || testResultsLoading;
   const error = wordbooksError || testResultsError;

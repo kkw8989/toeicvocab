@@ -6,6 +6,7 @@ import { fetchAllWordbooks } from '../../slices/wordbookSlice';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
 import ErrorMessage from '../common/ErrorMessage';
+import './word.css';
 
 function WordForm({ word = null, isEditing = false }) {
   const [formData, setFormData] = useState({
@@ -25,7 +26,7 @@ function WordForm({ word = null, isEditing = false }) {
   
   useEffect(() => {
     // 단어장 목록 불러오기
-    dispatch(fetchAllWordbooks());
+    // dispatch(fetchAllWordbooks());
     
     // 수정 모드일 경우 기존 데이터 설정
     if (isEditing && word) {

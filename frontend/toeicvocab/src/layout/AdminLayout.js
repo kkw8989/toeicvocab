@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
@@ -21,32 +21,32 @@ function AdminLayout({ children }) {
       <Header />
       <div className="admin-container">
         <aside className="admin-sidebar">
-          <h2>관리자 메뉴</h2>
-          <nav className="admin-nav">
-            <ul className="admin-nav-list">
-              <li className="admin-nav-item">
-                <a href="/admin" className="admin-nav-link">
-                  대시보드
-                </a>
-              </li>
-              <li className="admin-nav-item">
-                <a href="/admin/wordbooks" className="admin-nav-link">
-                  단어장 관리
-                </a>
-              </li>
-              <li className="admin-nav-item">
-                <a href="/admin/words" className="admin-nav-link">
-                  단어 관리
-                </a>
-              </li>
-              <li className="admin-nav-item">
-                <a href="/admin/users" className="admin-nav-link">
-                  사용자 관리
-                </a>
-              </li>
-            </ul>
-          </nav>
-        </aside>
+  <h2>관리자 메뉴</h2>
+  <nav className="admin-nav">
+    <ul className="admin-nav-list">
+      <li className="admin-nav-item">
+        <Link to="/admin" className="admin-nav-link">
+          대시보드
+        </Link>
+      </li>
+      <li className="admin-nav-item">
+        <Link to="/admin/wordbooks" className="admin-nav-link">
+          단어장 관리
+        </Link>
+      </li>
+      <li className="admin-nav-item">
+        <Link to="/admin/words" className="admin-nav-link">
+          단어 관리
+        </Link>
+      </li>
+      {/* <li className="admin-nav-item">
+        <Link to="/admin/users" className="admin-nav-link">
+          사용자 관리
+        </Link>
+      </li> */}
+    </ul>
+  </nav>
+</aside>
         <main className="admin-main">
           <div className="admin-content">{children}</div>
         </main>

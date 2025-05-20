@@ -6,6 +6,7 @@ import BasicLayout from '../../layout/BasicLayout';
 import WordbookList from '../../components/wordbook/WordbookList';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
+import './wordbook.css';
 
 function WordbookListPage() {
   const dispatch = useDispatch();

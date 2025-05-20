@@ -10,6 +10,7 @@ import Button from '../../components/common/Button';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
 import Modal from '../../components/common/Modal';
+import './wordbook.css';
 
 function WordbookDetailPage() {
   const { wordbookId } = useParams();

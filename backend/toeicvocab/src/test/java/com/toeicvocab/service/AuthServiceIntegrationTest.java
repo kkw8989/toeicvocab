@@ -67,6 +67,7 @@ public class AuthServiceIntegrationTest {
         Admin admin = Admin.builder()
                 .username(username)
                 .password(passwordEncoder.encode(password))
+                .role("ADMIN")
                 .build();
         Admin savedAdmin = adminRepository.save(admin);
 
@@ -74,10 +75,12 @@ public class AuthServiceIntegrationTest {
         assertNotNull(savedAdmin);
         assertNotNull(savedAdmin.getId());
         assertEquals("admin", savedAdmin.getUsername());
+        assertEquals("ADMIN", savedAdmin.getRole()); // role 검증 추가
 
         // 데이터베이스에서 직접 확인
         Admin foundAdmin = adminRepository.findByUsername("admin").orElse(null);
         assertNotNull(foundAdmin);
         assertEquals("admin", foundAdmin.getUsername());
+        assertEquals("ADMIN", foundAdmin.getRole()); // role 검증 추가
     }
 }

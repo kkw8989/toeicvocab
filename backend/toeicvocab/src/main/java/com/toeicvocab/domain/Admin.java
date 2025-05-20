@@ -27,6 +27,10 @@ public class Admin {
     @Column(nullable = false)
     private String password;
 
+    // 역할 정보 추가
+    @Column(nullable = false)
+    private String role = "ADMIN";  // 기본값으로 ROLE_ADMIN 설정
+
     @Column(name = "created_at")
     private LocalDateTime createdAt;
 

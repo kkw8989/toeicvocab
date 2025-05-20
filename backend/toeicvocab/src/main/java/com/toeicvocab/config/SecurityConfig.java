@@ -47,20 +47,36 @@ public class SecurityConfig {
     }
 
     @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        // CSRF 비활성화 및 JWT 인증 설정
+//        http
+//                .csrf(csrf -> csrf.disable())
+//                .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
+//                .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+//                .authorizeHttpRequests(auth ->
+//                        auth.requestMatchers("/api/auth/**").permitAll()
+//                                .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
+//                                .requestMatchers("/api/words/public/**").permitAll()
+//                                .requestMatchers("/api/words/**").hasAuthority("ADMIN")
+//                                .requestMatchers("/api/wordbooks/**").hasAuthority("ADMIN")
+//                                .anyRequest().authenticated()
+//                );
+//
+//        // JWT 필터 등록
+//        http.authenticationProvider(authenticationProvider());
+//        http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
+//
+//        return http.build();
+
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        // CSRF 비활성화 및 JWT 인증 설정
+        // 모든 요청에 대해 인증 비활성화 (테스트용)
         http
                 .csrf(csrf -> csrf.disable())
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authorizeHttpRequests(auth ->
-                        auth.requestMatchers("/api/auth/**").permitAll()
-                                .requestMatchers("/api/admin/**").hasRole("ADMIN")
-                                .requestMatchers("/api/words/public/**").permitAll()
-                                .anyRequest().authenticated()
-                );
+                .authorizeHttpRequests(auth -> auth.anyRequest().permitAll());  // 모든 요청 허용
 
-        // JWT 필터 등록
+        // JWT 필터 등록 (선택적으로 주석 처리할 수 있음)
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class);
 

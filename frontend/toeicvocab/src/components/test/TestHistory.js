@@ -29,7 +29,6 @@ function TestHistory({ testResults }) {
   
   return (
     <div className="test-history">
-      <h2>테스트 기록</h2>
       
       {Object.values(resultsByWordbook).map((wordbook) => (
         <div key={wordbook.wordbookId} className="wordbook-history">

@@ -7,6 +7,7 @@ import BasicLayout from '../../layout/BasicLayout';
 import TestResult from '../../components/test/TestResult';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
+import './test.css';
 
 function TestResultPage() {
   const { wordbookId, resultId } = useParams();
