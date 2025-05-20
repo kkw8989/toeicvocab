@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import BasicLayout from '../../layout/BasicLayout';
 import PostForm from '../../components/post/PostForm';
+import './post.css';
 
 function PostWritePage() {
   const navigate = useNavigate();

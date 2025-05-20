@@ -6,6 +6,7 @@ import { fetchAllWordbooks } from '../../slices/wordbookSlice';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
 import ErrorMessage from '../common/ErrorMessage';
+import './word.css';
 
 function WordForm({ word = null, isEditing = false }) {
   const [formData, setFormData] = useState({

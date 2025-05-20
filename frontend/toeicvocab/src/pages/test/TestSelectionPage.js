@@ -7,6 +7,7 @@ import Button from '../../components/common/Button';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
 import { formatDate } from '../../utils/formatters';
+import './test.css';
 
 function TestSelectionPage() {
   const dispatch = useDispatch();

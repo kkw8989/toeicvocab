@@ -4,6 +4,7 @@ import Button from '../common/Button';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { isAdmin } from '../../utils/tokenUtils';
+import './word.css';
 
 function WordList({ words, onWordClick, showMeaning = true }) {
   const navigate = useNavigate();

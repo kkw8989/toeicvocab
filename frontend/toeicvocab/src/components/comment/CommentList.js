@@ -1,5 +1,6 @@
 import React from 'react';
 import CommentItem from './CommentItem';
+import './comment.css';
 
 function CommentList({ comments, postId }) { // postId 파라미터 추가
   if (!comments || comments.length === 0) {

@@ -4,6 +4,7 @@ import { addComment, clearError } from '../../slices/commentSlice';
 import { fetchPost } from '../../slices/postSlice'; // 게시글 다시 불러오기 위해 추가
 import Button from '../common/Button';
 import ErrorMessage from '../common/ErrorMessage';
+import './comment.css';
 
 function CommentForm({ postId }) {
   const [content, setContent] = useState('');

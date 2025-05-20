@@ -5,6 +5,7 @@ import { fetchPost } from '../../slices/postSlice'; // 게시글 다시 불러�
 import Button from '../common/Button';
 import Modal from '../common/Modal';
 import { formatDate } from '../../utils/formatters';
+import './comment.css';
 
 function CommentItem({ comment, postId }) { // postId 파라미터 추가
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);

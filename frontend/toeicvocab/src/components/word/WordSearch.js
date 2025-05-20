@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextInput from '../common/TextInput';
 import Button from '../common/Button';
+import './word.css';
 
 function WordSearch({ onSearch }) {
   const [searchTerm, setSearchTerm] = useState('');

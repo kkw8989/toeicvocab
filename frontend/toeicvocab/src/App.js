@@ -10,6 +10,7 @@ import testReducer from './slices/testSlice';
 import postReducer from './slices/postSlice';
 import commentReducer from './slices/commentSlice';
 import './App.css';
+import './common.css';
 
 // 리덕스 스토어 설정
 const store = configureStore({

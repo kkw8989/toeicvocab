@@ -6,6 +6,7 @@ import BasicLayout from '../../layout/BasicLayout';
 import PostList from '../../components/post/PostList';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
+import './post.css';
 
 function PostListPage() {
   const dispatch = useDispatch();

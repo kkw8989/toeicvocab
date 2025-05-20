@@ -7,6 +7,7 @@ import BasicLayout from '../../layout/BasicLayout';
 import PostForm from '../../components/post/PostForm';
 import Loading from '../../components/common/Loading';
 import ErrorMessage from '../../components/common/ErrorMessage';
+import './post.css';
 
 function PostEditPage() {
   const { postId } = useParams();
