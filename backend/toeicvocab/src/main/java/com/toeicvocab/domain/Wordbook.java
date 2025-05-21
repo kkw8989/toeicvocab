@@ -1,5 +1,6 @@
 package com.toeicvocab.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -27,6 +28,7 @@ public class Wordbook {
     private String description;
 
     @OneToMany(mappedBy = "wordbook", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Word> words = new ArrayList<>();
 
     @Column(name = "created_at")

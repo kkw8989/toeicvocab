@@ -1,5 +1,6 @@
 package com.toeicvocab.domain;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,6 +35,7 @@ public class Word {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "wordbook_id")
+    @JsonBackReference
     private Wordbook wordbook;
 
     @Column(name = "created_at")

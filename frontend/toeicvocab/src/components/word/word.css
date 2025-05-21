@@ -168,14 +168,15 @@
   border-radius: 8px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   padding: 20px;
-  margin-bottom: 20px;
+
 }
 
 .search-form {
   display: flex;
-  gap: 15px;
-  align-items: flex-end;
+  gap: 20px;
+  /* align-items: flex-end; */
   flex-wrap: wrap;
+  margin-top: 20px;
 }
 
 .select-group {
@@ -194,7 +195,12 @@
 
 .search-buttons {
   display: flex;
-  gap: 10px;
+  gap: 15px;
+}
+.search-buttons button {
+  padding: 15px 15px;        /* 기본 padding 줄이기 */
+  font-size: 15px;         /* 글자 크기 줄이기 */
+  height: 40px;            /* 버튼 높이 줄이기 (선택) */
 }
 
 /* 컨테이너 스타일 수정 - 스크롤 문제 해결 */

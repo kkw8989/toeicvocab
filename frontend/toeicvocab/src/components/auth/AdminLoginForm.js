@@ -19,7 +19,7 @@ function AdminLoginForm() {
   useEffect(() => {
     // 이미 관리자로 로그인되어 있다면 홈으로 리다이렉트
     if (isAuthenticated && isAdmin) {
-      navigate('/');
+      navigate('/admin');
     }
     
     // 컴포넌트 언마운트 시 에러 초기화

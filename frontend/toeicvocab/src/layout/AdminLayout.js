@@ -4,6 +4,7 @@ import { useSelector } from 'react-redux';
 import Header from '../components/common/Header';
 import Footer from '../components/common/Footer';
 import { isAdmin } from '../utils/tokenUtils';
+import './admin.css';
 
 function AdminLayout({ children }) {
   const navigate = useNavigate();
@@ -39,11 +40,6 @@ function AdminLayout({ children }) {
           단어 관리
         </Link>
       </li>
-      {/* <li className="admin-nav-item">
-        <Link to="/admin/users" className="admin-nav-link">
-          사용자 관리
-        </Link>
-      </li> */}
     </ul>
   </nav>
 </aside>
