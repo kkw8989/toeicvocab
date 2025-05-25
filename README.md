@@ -1,13 +1,16 @@
-# toeicvocab
+# Toeicvocab
 Spring Boot와 React를 활용한 영어 단어 학습 프로그램 프로젝트
+
 
 
 ## 프로젝트 소개
 TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하고 테스트 할 수 있는 웹 기반 학습 시스템 제공
 
 
+
 ## 프로젝트 기간
 #### 2025/04/20 ~ 2025/05/30
+
 
 
 ## 협업 멤버
@@ -16,6 +19,7 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
     <td align="center"><a href="https://github.com/kkw8989"><img src="https://avatars.githubusercontent.com/kkw8989" width="100px;" alt=""/><br /><sub><b>kkw8989</b></sub></a></td>
   </tr>
 </table>
+
 
 
 #### 각 팀원들은 맡은 기능을 하이브리드로 진행
@@ -30,6 +34,7 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
   - 게시글 CRUD / 댓글 CRUD 구현
   - 각 페이지 UI 설계 및 구성
   - 모든 페이지 css
+
  
 ## 팀 pdf
 아직 x
@@ -37,6 +42,7 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
 
 ## 시연영상
   [영상 보러 가기](https://youtu.be/vCiUZxfTASI)
+
 
 
 ## 개발환경
@@ -57,9 +63,11 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
      - Python
 
 
+
 ## 유스케이스
   ![image](https://github.com/user-attachments/assets/03c476c6-6efa-4cd3-a542-24beec47e20d)
   
+
 
 ## 주요 기능
 
