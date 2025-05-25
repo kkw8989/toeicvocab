@@ -90,6 +90,7 @@ function SignupForm() {
   return (
     <div className="signup-form">
       <h2>회원가입</h2>
+              <br/>
       {error && <ErrorMessage message={error} />}
       <form onSubmit={handleSubmit}>
         <TextInput
@@ -141,6 +142,7 @@ function SignupForm() {
         </Button>
       </form>
       <div className="signup-links">
+        <br/>
         <p>
           이미 계정이 있으신가요? <a href="/login">로그인</a>
         </p>

@@ -15,11 +15,6 @@ function LoginPage() {
             <div className="auth-message success">{message}</div>
           )}
           <LoginForm />
-          <div className="auth-links">
-            <p>
-              관리자이신가요? <Link to="/admin/login">관리자 로그인</Link>
-            </p>
-          </div>
         </div>
       </div>
     </BasicLayout>
