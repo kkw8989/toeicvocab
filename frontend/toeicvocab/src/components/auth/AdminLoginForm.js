@@ -19,7 +19,7 @@ function AdminLoginForm() {
   useEffect(() => {
     // 이미 관리자로 로그인되어 있다면 홈으로 리다이렉트
     if (isAuthenticated && isAdmin) {
-      navigate('/');
+      navigate('/admin');
     }
     
     // 컴포넌트 언마운트 시 에러 초기화
@@ -44,6 +44,7 @@ function AdminLoginForm() {
   return (
     <div className="login-form admin-login-form">
       <h2>관리자 로그인</h2>
+              <br/>
       {error && <ErrorMessage message={error} />}
       <form onSubmit={handleSubmit}>
         <TextInput
@@ -73,6 +74,7 @@ function AdminLoginForm() {
         </Button>
       </form>
       <div className="login-links">
+                <br/>
         <p>
           <a href="/login">일반 사용자 로그인으로 돌아가기</a>
         </p>

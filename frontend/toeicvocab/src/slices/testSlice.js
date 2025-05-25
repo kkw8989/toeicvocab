@@ -83,9 +83,30 @@ const testSlice = createSlice({
         state.error = null;
       })
       .addCase(fetchWordsForTest.fulfilled, (state, action) => {
-        state.testWords = action.payload;
-        state.loading = false;
-      })
+  console.log('테스트 단어 응답:', action.payload);
+  
+  // API 응답 구조 처리
+  if (Array.isArray(action.payload)) {
+    state.testWords = action.payload;
+  } else if (action.payload && Array.isArray(action.payload.words)) {
+    state.testWords = action.payload.words;
+  } else if (action.payload && typeof action.payload === 'object') {
+    // 객체의 프로퍼티 중 배열인 것을 찾아 사용
+    const wordsArray = Object.values(action.payload).find(val => Array.isArray(val));
+    if (wordsArray) {
+      state.testWords = wordsArray;
+    } else {
+      console.error('단어 배열을 찾을 수 없습니다:', action.payload);
+      state.testWords = [];
+    }
+  } else {
+    console.error('예상치 못한 응답 형식:', action.payload);
+    state.testWords = [];
+  }
+  
+  console.log('처리된 testWords:', state.testWords);
+  state.loading = false;
+})
       .addCase(fetchWordsForTest.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload || '테스트 단어 조회에 실패했습니다.';

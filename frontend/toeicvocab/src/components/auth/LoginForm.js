@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
   import { useDispatch, useSelector } from 'react-redux';
-  import { useNavigate } from 'react-router-dom';
+  import { Link, useNavigate } from 'react-router-dom';
   import { loginUser, clearError } from '../../slices/authSlice';
   import TextInput from '../common/TextInput';
   import Button from '../common/Button';
@@ -44,6 +44,7 @@ import React, { useState, useEffect } from 'react';
     return (
       <div className="login-form">
         <h2>로그인</h2>
+                <br/>
         {error && <ErrorMessage message={error} />}
         <form onSubmit={handleSubmit}>
           <TextInput
@@ -73,9 +74,13 @@ import React, { useState, useEffect } from 'react';
           </Button>
         </form>
         <div className="login-links">
+          <br/>
           <p>
             계정이 없으신가요? <a href="/signup">회원가입</a>
           </p>
+        </div>
+        <div className="auth-links">
+          <p>관리자이신가요? <a href="/admin/login">관리자로그인</a></p>
         </div>
       </div>
     );

@@ -7,6 +7,7 @@ import { getUserInfo, isLoggedIn, isAdmin } from '../utils/tokenUtils';
 
 // 인증 페이지
 import LoginPage from '../pages/auth/LoginPage';
+import LogoutPage from '../pages/auth/LogoutPage';
 import AdminLoginPage from '../pages/auth/AdminLoginPage';
 import SignupPage from '../pages/auth/SignupPage';
 
@@ -79,9 +80,10 @@ function AppRouter() {
         
         {/* 인증 페이지 */}
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/logout" element={<LogoutPage  />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
         <Route path="/signup" element={<SignupPage />} />
-        
+
         {/* 단어장 페이지 */}
         <Route path="/wordbooks" element={<WordbookListPage />} />
         <Route path="/wordbooks/:wordbookId" element={<WordbookDetailPage />} />

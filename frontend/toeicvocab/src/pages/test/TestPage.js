@@ -28,7 +28,16 @@ function TestPage() {
     
     // 단어장 정보와 테스트 단어 불러오기
     dispatch(fetchWordbook({ wordbookId, includeWords: false }));
-    dispatch(fetchWordsForTest(wordbookId));
+    dispatch(fetchWordsForTest(wordbookId))
+    // .unwrap()
+    // .then((result) => {
+    //   console.log('테스트 단어 로드 결과:', result);
+    //   // Redux 스토어의 현재 상태를 출력
+    //   console.log('Redux 상태:', store.getState().test.testWords);
+    // })
+    // .catch((error) => {
+    //   console.error('테스트 단어 로드 실패:', error);
+    // });
     
     // 컴포넌트 언마운트 시 테스트 상태 초기화
     return () => {

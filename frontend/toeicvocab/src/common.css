@@ -225,7 +225,7 @@ a:hover {
   width: 100%;
   max-width: 400px;
   background-color: #fff;
-  padding: 35px;
+  padding: 40px;
   border-radius: 12px;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
   transition: transform 0.3s, box-shadow 0.3s;
@@ -244,6 +244,10 @@ a:hover {
 }
 
 .auth-message.success {
+  text-align: left;
+  position: fixed;
+  top: 20px;
+  left: 20px;
   background-color: #d4edda;
   color: #155724;
   border-left: 4px solid #28a745;
@@ -259,6 +263,7 @@ a:hover {
   margin-top: 25px;
   text-align: center;
 }
+
 
 .auth-links a {
   color: #007bff;
@@ -284,7 +289,7 @@ a:hover {
 }
 
 .text-input {
-  width: 100%;
+  width: 300px;
   padding: 12px 15px;
   border: 1px solid #ced4da;
   border-radius: 8px;
@@ -481,6 +486,14 @@ a:hover {
   font-size: 1.05rem;
   border-radius: 8px;
 }
+
+.login-links {
+  text-align: center;
+}
+.signup-links {
+  text-align: center;
+}
+
 
 /* 모달 스타일 개선 */
 .modal-overlay {

@@ -15,18 +15,43 @@ function TestQuestions({ wordbookId }) {
   const navigate = useNavigate();
   const { testWords, userAnswers, loading, error } = useSelector((state) => state.test);
   
+  // 디버깅을 위한 로그 추가
+  useEffect(() => {
+    console.log('testWords:', testWords);
+    console.log('currentIndex:', currentIndex);
+    console.log('userAnswers:', userAnswers);
+  }, [testWords, currentIndex, userAnswers]);
+  
   // 단어별 보기 옵션 생성 (정답 1개 + 오답 3개)
   useEffect(() => {
     if (testWords.length > 0 && currentIndex < testWords.length) {
       const currentWord = testWords[currentIndex];
+      console.log('현재 단어:', currentWord);
       
       // 현재 단어를 제외한 다른 단어들 중에서 3개 무작위 선택
       const otherWords = testWords.filter((word) => word.id !== currentWord.id);
-      const randomWords = [...otherWords]
-        .sort(() => Math.random() - 0.5)
-        .slice(0, 3);
+      console.log('다른 단어 개수:', otherWords.length);
       
-      // 정답과 오답 4개를 합쳐서 무작위로 배치
+      // 다른 단어가 3개 미만인 경우 처리
+      let randomWords = [];
+      if (otherWords.length >= 3) {
+        randomWords = [...otherWords]
+          .sort(() => Math.random() - 0.5)
+          .slice(0, 3);
+      } else {
+        // 다른 단어가 부족한 경우 임의의 오답 생성
+        randomWords = [...otherWords];
+        const neededOptions = 3 - otherWords.length;
+        for (let i = 0; i < neededOptions; i++) {
+          randomWords.push({
+            id: `fake-${i}`,
+            meaning: `임의 보기 ${i+1}`,
+            isCorrect: false
+          });
+        }
+      }
+      
+      // 정답과 오답을 합쳐서 무작위로 배치
       const options = [
         { id: currentWord.id, meaning: currentWord.meaning, isCorrect: true },
         ...randomWords.map((word) => ({
@@ -36,6 +61,7 @@ function TestQuestions({ wordbookId }) {
         })),
       ].sort(() => Math.random() - 0.5);
       
+      console.log('생성된 선택지:', options);
       setShuffledOptions(options);
     }
   }, [testWords, currentIndex]);
@@ -59,39 +85,41 @@ function TestQuestions({ wordbookId }) {
     setTimeout(() => {
       if (currentIndex < testWords.length - 1) {
         // 다음 문제로 이동
+        console.log('다음 문제로 이동:', currentIndex + 1);
         setCurrentIndex(currentIndex + 1);
       } else {
         // 테스트 종료
+        console.log('테스트 종료');
         setIsTestFinished(true);
       }
     }, 500);
   };
   
   // 테스트 결과 제출
-const handleFinishTest = () => {
-  // 맞은 문제 수 계산
-  const correctCount = Object.values(userAnswers).filter(
-    (answer) => answer.isCorrect
-  ).length;
-  
-  // 테스트 결과 저장
-  dispatch(
-    submitTestResult({
-      wordbookId,
-      correctCount,
-      totalCount: testWords.length,
-    })
-  )
-    .unwrap()
-    .then((result) => {  // 결과 데이터를 매개변수로 받음
-      // 결과 페이지로 이동
-      navigate(`/test/result/${wordbookId}/${result.id}`);
-    })
-    .catch((error) => {
-      console.error("테스트 결과 저장 실패:", error);
-      // 오류 처리 로직 추가 가능
-    });
-};
+  const handleFinishTest = () => {
+    // 맞은 문제 수 계산
+    const correctCount = Object.values(userAnswers).filter(
+      (answer) => answer.isCorrect
+    ).length;
+    
+    // 테스트 결과 저장
+    dispatch(
+      submitTestResult({
+        wordbookId,
+        correctCount,
+        totalCount: testWords.length,
+      })
+    )
+      .unwrap()
+      .then((result) => {  // 결과 데이터를 매개변수로 받음
+        // 결과 페이지로 이동
+        navigate(`/test/result/${wordbookId}/${result.id}`);
+      })
+      .catch((error) => {
+        console.error("테스트 결과 저장 실패:", error);
+        // 오류 처리 로직 추가 가능
+      });
+  };
   
   // 로딩 중 표시
   if (loading) {
@@ -142,6 +170,9 @@ const handleFinishTest = () => {
   const currentWord = testWords[currentIndex];
   const currentAnswer = userAnswers[currentWord.id];
   
+  // 정답 단어 찾기 (currentWord가 항상 정답)
+  const correctMeaning = currentWord.meaning;
+  
   return (
     <div className="test-questions">
       <div className="test-progress">
@@ -187,7 +218,7 @@ const handleFinishTest = () => {
           {currentAnswer.isCorrect ? '정답입니다!' : '틀렸습니다!'}
           {!currentAnswer.isCorrect && (
             <p className="correct-answer">
-              정답: {testWords.find((word) => word.id === currentAnswer.selectedId)?.meaning}
+              정답: {correctMeaning}
             </p>
           )}
         </div>

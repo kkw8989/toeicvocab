@@ -148,7 +148,7 @@
 /* 단어 목록 스타일 */
 .word-list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  /* grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); */
   gap: 15px;
   margin-top: 20px;
 }

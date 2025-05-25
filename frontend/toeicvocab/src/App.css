@@ -95,7 +95,16 @@ a {
 .auth-container {
   display: flex;
   align-items: center;
+
 }
+ /* .auth-container {
+  display: flex;
+  align-items: center;
+  width: 200px;
+  height: 400px;
+  padding: 2rem; 
+  box-sizing: border-box; 
+} */
 
 .login-btn, .signup-btn {
   margin-left: 10px;
