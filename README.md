@@ -17,6 +17,9 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
 <table>
   <tr>
     <td align="center"><a href="https://github.com/kkw8989"><img src="https://avatars.githubusercontent.com/kkw8989" width="100px;" alt=""/><br /><sub><b>kkw8989</b></sub></a></td>
+    <td align="center"><a href="https://github.com/taejung2"><img src="https://avatars.githubusercontent.com/taejung2" width="100px;" alt=""/><br /><sub><b>taejung2</b></sub></a></td>
+    <td align="center"><a href="https://github.com/minzx23"><img src="https://avatars.githubusercontent.com/minzx23" width="100px;" alt=""/><br /><sub><b>minzx23</b></sub></a></td>
+    <td align="center"><a href="https://github.com/kuty2004"><img src="https://avatars.githubusercontent.com/kuty2004" width="100px;" alt=""/><br /><sub><b>kuty2004</b></sub></a></td>
   </tr>
 </table>
 
