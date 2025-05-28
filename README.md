@@ -91,6 +91,17 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
   ![image](https://github.com/user-attachments/assets/25fb2f2d-55f8-4493-8398-abb8e469c325)
 
 ---
+### 관리자 페이지
+- 관리자 페이지에서 단어장 CRUD / 단어 CRUD 가능
+- 대쉬보드에는 최근 추가한 단어장 리스트 / 단어 리스트 나열
+
+#### 구현 결과
+![image](https://github.com/user-attachments/assets/9648b3b6-a53a-4291-b37b-d08723c561e6)
+![image](https://github.com/user-attachments/assets/f4e8f206-aedc-40eb-850b-d5aaaeecc5dc)
+![image](https://github.com/user-attachments/assets/035458fe-2bb0-4d80-be10-ee260e236b76)
+
+
+---
 ### 단어장 목록
 - 여러 난이도의 단어장 목록 나열
   
@@ -106,6 +117,7 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
 
 #### 구현 결과
   ![image](https://github.com/user-attachments/assets/29ba5a7a-fc58-4c38-8383-3e90ba0ae51c)
+  ![image](https://github.com/user-attachments/assets/d3e77517-0045-4b39-8096-ac64eea0d7ae)
 
 
   ---
@@ -128,9 +140,7 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
 ### 게시판
 - 사용자의 게시글 작성 / 사용자의 댓글 작성
 
-
 #### 구현 결과
-  - 게시판 페이지
-    ![image](https://github.com/user-attachments/assets/7cfe0cea-87a6-4e2e-9a2a-5b4796e52ca4)
+  ![image](https://github.com/user-attachments/assets/7cfe0cea-87a6-4e2e-9a2a-5b4796e52ca4)
  
 
