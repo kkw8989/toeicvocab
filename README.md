@@ -38,6 +38,14 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
   - 각 페이지 UI 설계 및 구성
   - 모든 페이지 css
 
+- 박태정
+  - 프로젝트 구상도 설계 및 유스케이스 작성, 백엔드 구상
+    
+- 채예원
+  - ppt 작성, 프론트 구상
+  
+- 강민주
+  - 회의록 작성, 프론트 구상
  
 ## 팀 pdf
 아직 x
@@ -80,7 +88,8 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
 - TOEIC 단어 학습 특징
 
 #### 구현 결과
-  ![main](https://github.com/user-attachments/assets/8d24b6ec-8569-4593-aa9a-45fa4d4c754f)
+  ![image](https://github.com/user-attachments/assets/4321e2d4-cb7c-4747-92ae-b4255477fac3)
+
 
 ---
 ### 단어장 목록
