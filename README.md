@@ -98,7 +98,7 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
 #### 구현 결과
 ![image](https://github.com/user-attachments/assets/9648b3b6-a53a-4291-b37b-d08723c561e6)
 ![image](https://github.com/user-attachments/assets/f4e8f206-aedc-40eb-850b-d5aaaeecc5dc)
-![image](https://github.com/user-attachments/assets/035458fe-2bb0-4d80-be10-ee260e236b76)
+![image](https://github.com/user-attachments/assets/1a0e61ce-84ac-4290-a011-ccc982a03181)
 
 
 ---
