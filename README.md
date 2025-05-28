@@ -77,7 +77,8 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
 
 ## 유스케이스
   ![image](https://github.com/user-attachments/assets/03c476c6-6efa-4cd3-a542-24beec47e20d)
-  
+  ![image](https://github.com/user-attachments/assets/25fb2f2d-55f8-4493-8398-abb8e469c325)
+
 
 
 ## 주요 기능
