@@ -95,36 +95,42 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
 - 여러 난이도의 단어장 목록 나열
   
 #### 구현 결과
-  ![mypage](https://github.com/user-attachments/assets/20fc8ba2-3e06-4bef-9e91-315fe0b0d81c)
+  ![image](https://github.com/user-attachments/assets/c685b866-abb3-4660-9be0-4306090e88a4)
+
   
 ---
 ### 단어 목록
+- 단어장 테스트 시작 가능
 - 단어장에 따른 단어 목록 나열
 - 단어 내용 및 검색 기능
 
 #### 구현 결과
-  ![mypage](https://github.com/user-attachments/assets/20fc8ba2-3e06-4bef-9e91-315fe0b0d81c)
+  ![image](https://github.com/user-attachments/assets/29ba5a7a-fc58-4c38-8383-3e90ba0ae51c)
+
 
   ---
 ### 테스트 페이지
 - 단어장에 맞는 테스트 기능
   
 #### 구현 결과
-  ![mypage](https://github.com/user-attachments/assets/20fc8ba2-3e06-4bef-9e91-315fe0b0d81c)
+  ![image](https://github.com/user-attachments/assets/bc2e6d37-1b17-43b8-a2bb-7ea3a54bec88)
+
   
 ---
 ### 테스트 결과 페이지
 - 테스트 결과와 점수에 맞는 예문
 
 #### 구현 결과
-  ![mypage](https://github.com/user-attachments/assets/20fc8ba2-3e06-4bef-9e91-315fe0b0d81c)
+  ![image](https://github.com/user-attachments/assets/41d1b6b4-85e4-41a3-ac4a-474c1de5e236)
+
   
 ---
 ### 게시판
 - 사용자의 게시글 작성 / 사용자의 댓글 작성
-  - 사용자의 게시글 작성
-    ![게시글작성](https://github.com/user-attachments/assets/8246e58a-de47-46a7-b086-eb2f34671e74)
 
-  - 사용자의 댓글 작성
-    ![댓글작성](https://github.com/user-attachments/assets/f17659ef-6aaa-4a66-a111-317cec74af65)
+
+#### 구현 결과
+  - 게시판 페이지
+    ![image](https://github.com/user-attachments/assets/7cfe0cea-87a6-4e2e-9a2a-5b4796e52ca4)
+ 
 
