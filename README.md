@@ -49,7 +49,7 @@ TOEIC 대비를 준비하는 대학생들이 체계적으로 단어를 암기하
  
 ## 팀 pdf
 
-(https://github.com/user-attachments/files/20715636/SE.4_202110906_.pptx)
+https://github.com/user-attachments/files/20715636/SE.4_202110906_.pptx
 
 
 ## 시연영상
