@@ -88,7 +88,7 @@ https://github.com/user-attachments/files/20715636/SE.4_202110906_.pptx
 - TOEIC 단어 학습 특징
 
 #### 구현 결과
-  ![image](https://github.com/user-attachments/assets/4321e2d4-cb7c-4747-92ae-b4255477fac3)
+  ![image](https://github.com/user-attachments/assets/20b555c0-d008-4cac-9e47-6610e0cc0c3d)
   ![image](https://github.com/user-attachments/assets/25fb2f2d-55f8-4493-8398-abb8e469c325)
 
 ---
