@@ -53,7 +53,7 @@ https://github.com/user-attachments/files/20715636/SE.4_202110906_.pptx
 
 
 ## 시연영상
-  [영상 보러 가기](https://youtu.be/vCiUZxfTASI)
+  [영상 보러 가기](https://youtu.be/ZqvCSuC6txo)
 
 
 
